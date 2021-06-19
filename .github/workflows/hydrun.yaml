@@ -1,0 +1,65 @@
+name: hydrun CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project:
+          - { dir: rpiplay-debian, os: debian:10, arch: amd64 }
+          - { dir: rpiplay-debian, os: debian:10, arch: arm64 }
+          - { dir: rpiplay-debian, os: debian:10, arch: arm/v7 }
+          - { dir: rpiplay-fedora, os: fedora:34, arch: amd64 }
+          - { dir: rpiplay-fedora, os: fedora:34, arch: arm64 }
+          - { dir: rpiplay-fedora, os: fedora:34, arch: arm/v7 }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Set up hydrun
+        run: |
+          curl -L -o /tmp/hydrun https://github.com/pojntfx/hydrun/releases/download/latest/hydrun.linux-$(uname -m)
+          sudo install /tmp/hydrun /usr/local/bin
+      - name: Build with hydrun
+        working-directory: ${{ matrix.project.dir }}
+        run: hydrun -o ${{ matrix.project.os }} -a ${{ matrix.project.arch }} ./Hydrunfile
+      - name: Fix permissions for output
+        working-directory: ${{ matrix.project.dir }}
+        run: sudo chown -R $USER out
+      - name: Upload output
+        uses: actions/upload-artifact@v2
+        with:
+          name: staging-${{ matrix.project.dir }}
+          path: |
+            ${{ matrix.project.dir }}/staging/*
+
+  publish-linux:
+    runs-on: ubuntu-latest
+    needs: build-linux
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download output
+        uses: actions/download-artifact@v2
+        with:
+          path: /tmp/out
+      - name: Publish to GitHub releases
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          files: |
+            /tmp/out/**/*

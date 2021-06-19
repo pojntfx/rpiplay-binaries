@@ -35,7 +35,7 @@ jobs:
         run: hydrun -o ${{ matrix.project.os }} -a ${{ matrix.project.arch }} ./Hydrunfile
       - name: Fix permissions for output
         working-directory: ${{ matrix.project.dir }}
-        run: sudo chown -R $USER out
+        run: sudo chown -R $USER staging
       - name: Upload output
         uses: actions/upload-artifact@v2
         with:

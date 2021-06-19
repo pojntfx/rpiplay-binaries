@@ -12,12 +12,12 @@ jobs:
     strategy:
       matrix:
         project:
-          - { dir: rpiplay-debian, os: debian:10, arch: amd64 }
-          - { dir: rpiplay-debian, os: debian:10, arch: arm64 }
-          - { dir: rpiplay-debian, os: debian:10, arch: arm/v7 }
-          - { dir: rpiplay-fedora, os: fedora:34, arch: amd64 }
-          - { dir: rpiplay-fedora, os: fedora:34, arch: arm64 }
-          - { dir: rpiplay-fedora, os: fedora:34, arch: arm/v7 }
+          - { dir: rpiplay-debian, os: "debian:10", arch: amd64 }
+          - { dir: rpiplay-debian, os: "debian:10", arch: arm64 }
+          - { dir: rpiplay-debian, os: "debian:10", arch: arm/v7 }
+          - { dir: rpiplay-fedora, os: "fedora:34", arch: amd64 }
+          - { dir: rpiplay-fedora, os: "fedora:34", arch: arm64 }
+          - { dir: rpiplay-fedora, os: "fedora:34", arch: arm/v7 }
 
     steps:
       - name: Checkout

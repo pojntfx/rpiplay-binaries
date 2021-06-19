@@ -11,6 +11,7 @@ Binaries are built weekly and uploaded to [GitHub releases](https://github.com/p
 On Fedora 34 (other RHEL-like distros should work too), you can install them like so:
 
 ```shell
+$ sudo dnf install -y gstreamer1 # You will need to install GStreamer. The rest of the dependencies are bundled into the static binary.
 $ curl -L -o /tmp/rpiplay https://github.com/pojntfx/rpiplay-binaries/releases/download/latest/rpiplay.fedora.static.linux-$(uname -m) # Stip `.static` to get a non-static binary; see https://github.com/FD-/RPiPlay#fedora-33 for bundled dependencies
 $ sudo install /tmp/rpiplay /usr/local/bin
 ```
@@ -18,6 +19,7 @@ $ sudo install /tmp/rpiplay /usr/local/bin
 On Debian 10 (other Debian-like distros should work too), you can install them like so:
 
 ```shell
+$ sudo apt install -y gstreamer-1.0 # You will need to install GStreamer. The rest of the dependencies are bundled into the static binary.
 $ curl -L -o /tmp/rpiplay https://github.com/pojntfx/rpiplay-binaries/releases/download/latest/rpiplay.debian.static.linux-$(uname -m) # Stip `.static` to get a non-static binary; see https://github.com/FD-/RPiPlay#ubuntu-1804-or-2004 for bundled dependencies
 $ sudo install /tmp/rpiplay /usr/local/bin
 ```

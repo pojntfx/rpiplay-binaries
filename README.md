@@ -12,7 +12,7 @@ On Fedora 34 (other RHEL-like distros should work too), you can install them lik
 
 ```shell
 $ sudo dnf install -y gstreamer1 # You will need to install GStreamer. The rest of the dependencies are bundled into the static binary.
-$ curl -L -o /tmp/rpiplay https://github.com/pojntfx/rpiplay-binaries/releases/download/latest/rpiplay.fedora.static.linux-$(uname -m) # Stip `.static` to get a non-static binary; see https://github.com/FD-/RPiPlay#fedora-33 for bundled dependencies
+$ curl -L -o /tmp/rpiplay https://github.com/pojntfx/rpiplay-binaries/releases/download/latest/rpiplay-linux.fedora.static.$(uname -m) # Stip `.static` to get a non-static binary; see https://github.com/FD-/RPiPlay#fedora-33 for bundled dependencies
 $ sudo install /tmp/rpiplay /usr/local/bin
 ```
 
@@ -20,7 +20,7 @@ On Debian 10 (other Debian-like distros should work too), you can install them l
 
 ```shell
 $ sudo apt install -y gstreamer-1.0 # You will need to install GStreamer. The rest of the dependencies are bundled into the static binary.
-$ curl -L -o /tmp/rpiplay https://github.com/pojntfx/rpiplay-binaries/releases/download/latest/rpiplay.debian.static.linux-$(uname -m) # Stip `.static` to get a non-static binary; see https://github.com/FD-/RPiPlay#ubuntu-1804-or-2004 for bundled dependencies
+$ curl -L -o /tmp/rpiplay https://github.com/pojntfx/rpiplay-binaries/releases/download/latest/rpiplay-linux.debian.static.$(uname -m) # Stip `.static` to get a non-static binary; see https://github.com/FD-/RPiPlay#ubuntu-1804-or-2004 for bundled dependencies
 $ sudo install /tmp/rpiplay /usr/local/bin
 ```
 

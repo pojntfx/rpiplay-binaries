@@ -12,12 +12,12 @@ jobs:
     strategy:
       matrix:
         project:
-          - { dir: rpiplay-debian, os: "debian:10", arch: amd64 }
-          - { dir: rpiplay-debian, os: "debian:10", arch: arm64 }
-          # - { dir: rpiplay-debian, os: "debian:10", arch: arm/v7 } # See https://github.com/JonathonReinhart/staticx/issues/55
-          - { dir: rpiplay-fedora, os: "fedora:34", arch: amd64 }
-          # - { dir: rpiplay-fedora, os: "fedora:34", arch: arm64 } # Freezes QEMU
-          # - { dir: rpiplay-fedora, os: "fedora:34", arch: arm/v7 } # See https://github.com/JonathonReinhart/staticx/issues/55
+          - { dir: rpiplay-debian, os: "debian:11", arch: amd64 }
+          - { dir: rpiplay-debian, os: "debian:11", arch: arm64 }
+          # - { dir: rpiplay-debian, os: "debian:11", arch: arm/v7 } # See https://github.com/JonathonReinhart/staticx/issues/55
+          - { dir: rpiplay-fedora, os: "fedora:35", arch: amd64 }
+          # - { dir: rpiplay-fedora, os: "fedora:35", arch: arm64 } # Freezes QEMU
+          # - { dir: rpiplay-fedora, os: "fedora:35", arch: arm/v7 } # See https://github.com/JonathonReinhart/staticx/issues/55
 
     steps:
       - name: Checkout
